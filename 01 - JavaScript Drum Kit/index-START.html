@@ -59,6 +59,19 @@
   <audio data-key="76" src="sounds/tink.wav"></audio>
 
 <script>
+  let keys_list = document.querySelectorAll("div[class='key']");
+  keys_list.forEach((key_node)=>{
+    let audio_node = document.querySelector(`audio[data-key="${key_node.getAttribute("data-key")}"]`);
+    key_node.addEventListener("click", ()=>{
+    audio_node.play();
+    });
+    document.addEventListener("keydown", (event)=>{
+      if(event.key.toLowerCase() == key_node.querySelector("kbd").textContent.toLowerCase())
+    {
+      audio_node.play();
+    }
+    })
+  })
 
 </script>
 

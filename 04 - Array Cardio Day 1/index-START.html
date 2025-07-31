@@ -38,29 +38,59 @@
     
     // Array.prototype.filter()
     // 1. Filter the list of inventors for those who were born in the 1500's
-
+    let filtered_inventors = inventors.filter((inventor)=>{
+      if(inventor.year < 1600 && inventor.year >1500)
+    {
+      return true;
+    }
+    return false;
+    })
     // Array.prototype.map()
     // 2. Give us an array of the inventors first and last names
-
+    let lastNames = inventors.map((inventor)=>{
+      return inventor.last;
+    });
+    let firstNames = inventors.map((inventor)=>{
+      return inventor.first;
+    })
     // Array.prototype.sort()
     // 3. Sort the inventors by birthdate, oldest to youngest
-
+    inventors.sort((inventor1, inventor2)=>{
+      return inventor2.year - inventor1.year;
+    });
     // Array.prototype.reduce()
     // 4. How many years did all the inventors live all together?
-
+    let sumAge = inventors.reduce((sum, inventor)=>{
+      return sum + inventor.passed - inventor.year;
+    }, 0);
     // 5. Sort the inventors by years lived
-
+    inventors.sort((inventor1, inventor2)=>{
+      let age1 = inventor1.passed - inventor1.year;
+      let age2 = inventor2.passed - inventor2.year;
+      return age1 - age2;
+    })
     // 6. create a list of Boulevards in Paris that contain 'de' anywhere in the name
     // https://en.wikipedia.org/wiki/Category:Boulevards_in_Paris
-
+    let deBoulevards = ["Boulevard des Capucines", "Boulevard des Italiens", "Boulevard de la Madeleine"]
 
     // 7. sort Exercise
     // Sort the people alphabetically by last name
-
+    people.sort((person1, person2)=>{
+      let last1 = person1.split(",")[1].trim();
+      let last2 = person2.split(",")[1].trim();
+      return last1.localeCompare(last2);
+    });
     // 8. Reduce Exercise
     // Sum up the instances of each of these
     const data = ['car', 'car', 'truck', 'truck', 'bike', 'walk', 'car', 'van', 'bike', 'walk', 'car', 'van', 'car', 'truck' ];
-
+    let vehicleCount = data.reduce((vehicles, element)=>{
+      if(!vehicles[element])
+    {
+      vehicles[element] = 0;
+    }
+    vehicles[element]++;
+    return vehicles;
+    }, {});
   </script>
 </body>
 </html>
